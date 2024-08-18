@@ -37,7 +37,7 @@ const Header = () => {
       return () => window.removeEventListener('scroll', handleScroll);
     }, []);
   
-    const basePath = process.env.NODE_ENV === 'production' ? '/Trivally Tech-webcite' : '';
+    
 
     const navItems = [
         { name: 'About', icon: <Info size={24} />, href: '/#about' },
