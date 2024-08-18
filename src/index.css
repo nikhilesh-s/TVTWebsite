@@ -119,6 +119,6 @@ code {
     transform: rotateX(90deg) translateZ(125px);
   }
   .cube__face--bottom {
-    transform: rotateX(-90deg) translateZ(75px);
+    transform: rotateX(-90deg) translateZ(125px);
   }
 }
