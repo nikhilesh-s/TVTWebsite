@@ -42,7 +42,7 @@ const Header = () => {
     const navItems = [
         { name: 'About', icon: <Info size={24} />, href: '/#about' },
         /*{ name: 'Video', icon: <Video size={24} />, href: '/#video' },*/
-        { name: 'Why Trivally Tech', icon: <Star size={24} />, href: '/#why' },
+        { name: 'Why Tri-Valley Tech', icon: <Star size={24} />, href: '/#why' },
         /*{ name: 'Team', icon: <Users size={24} />, href: '/#team' },
         { name: 'Projects', icon: <Rocket size={24} />, href: '/#projects' },*/
         { name: 'Join Us', icon: <UserPlus size={24} />, href: '/#join' },
@@ -65,7 +65,7 @@ const Header = () => {
             href="/"
             whileHover={{ scale: 1.05 }}
             >
-            <img src={logo} alt="Trivally Tech Logo" style={{ height: '4rem', width: 'auto' }} />
+            <img src={logo} alt="Tri-Valley Tech Logo" style={{ height: '4rem', width: 'auto' }} />
         </motion.a>
 
             <nav className="hidden md:block">
@@ -148,11 +148,11 @@ const RotatingCube = () => (
           <p>Global Impact</p>
         </div>
         <div className="cube__face cube__face--top">
-          <img src={logo} alt="Trivally Tech Logo" className="w-150 h-150" />
+          <img src={logo} alt="Tri-Valley Tech Logo" className="w-150 h-150" />
         </div>
         <div className="cube__face cube__face--bottom">
-        <img src={logo} alt="Trivally Tech Logo" className="w-150 h-150" />
-          {/*<p className="text-lg font-bold">Trivally Tech</p>*/}
+        <img src={logo} alt="Tri-Valley Tech Logo" className="w-150 h-150" />
+          {/*<p className="text-lg font-bold">Tri-Valley Tech</p>*/}
         </div>
       </div>
     </div>
@@ -184,7 +184,7 @@ const Hero = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Turn your ideas into real-world impact with Trivally Tech
+          Turn your ideas into real-world impact with Tri-Valley Tech
         </motion.p>
         <motion.button
       className="bg-purple-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-purple-700 transition duration-300 shadow-neon"
@@ -258,7 +258,7 @@ const Feature = ({ icon, title, description }) => (
 const Why = () => (
   <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
     <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">Why Join Trivally Tech?</h2>
+      <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">Why Join Tri-Valley Tech?</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Feature 
           icon={<Users size={48} className="text-purple-500" />}
@@ -283,7 +283,7 @@ const Why = () => (
 const AboutUs = () => (
     <section id="about" className="py-20 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">About Trivally Tech</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">About Tri-Valley Tech</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -291,13 +291,13 @@ const AboutUs = () => (
             transition={{ duration: 0.5 }}
           >
             <p className="text-lg mb-6 text-gray-300">
-              <TypeWriter text="Trivally Tech is a nonprofit organization dedicated to empowering high school students to create real-world impact through innovative projects. We believe that today's students have the potential to solve many of the challenges we face in our communities and beyond." />
+              <TypeWriter text="Tri-Valley Tech is a nonprofit organization dedicated to empowering high school students to create real-world impact through innovative projects. We believe that today's students have the potential to solve many of the challenges we face in our communities and beyond." />
             </p>
             <p className="text-lg mb-6 text-gray-300">
-              Our mission is to provide resources, guidance, and a collaborative platform that helps students take their ideas from concept to reality. By joining Trivally Tech, you become part of a community of passionate peers who share your drive to make a difference.
+              Our mission is to provide resources, guidance, and a collaborative platform that helps students take their ideas from concept to reality. By joining Tri-Valley Tech, you become part of a community of passionate peers who share your drive to make a difference.
             </p>
             <p className="text-lg text-gray-300">
-              Whether you're interested in technology, environmental issues, art, or any other field, Trivally Tech offers the opportunity to work on meaningful projects, learn new skills, and connect with mentors who can help shape your future.
+              Whether you're interested in technology, environmental issues, art, or any other field, Tri-Valley Tech offers the opportunity to work on meaningful projects, learn new skills, and connect with mentors who can help shape your future.
             </p>
           </motion.div>
           <div className="grid grid-cols-2 gap-4">
@@ -402,7 +402,7 @@ const CTA = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        Join Trivally Tech today and start turning your ideas into action!
+        Join Tri-Valley Tech today and start turning your ideas into action!
       </motion.p>
       <a href="https://discord.gg/9jNzqCQ3" target="_blank" rel="noopener noreferrer">
       <motion.button 
@@ -502,7 +502,7 @@ const Footer = () => (
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-purple-400 mb-4">Trivally Tech</h3>
+            <h3 className="text-xl font-bold text-purple-400 mb-4">Tri-Valley Tech</h3>
             <p className="text-sm">Empowering high school innovators to create real-world impact through collaborative projects.</p>
           </div>
           <div>
@@ -543,7 +543,7 @@ const Footer = () => (
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p>&copy; 2024 Trivally Tech. All rights reserved.</p>
+          <p>&copy; 2024 Tri-Valley Tech. All rights reserved.</p>
         </div>
       </div>
     </footer>
