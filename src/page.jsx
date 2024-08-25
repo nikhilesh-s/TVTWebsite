@@ -404,7 +404,7 @@ const CTA = () => (
       >
         Join Tri-Valley Tech today and start turning your ideas into action!
       </motion.p>
-      <a href="https://discord.gg/9jNzqCQ3" target="_blank" rel="noopener noreferrer">
+      <a href="https://discord.gg/PzFEsjvQFB" target="_blank" rel="noopener noreferrer">
       <motion.button 
         className="bg-purple-600 text-white px-6 py-2 rounded-full font-bold hover:bg-purple-700 transition duration-300 shadow-neon"
         whileHover={{ scale: 1.05 }}
