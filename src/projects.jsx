@@ -159,5 +159,5 @@ const ProjectsPage = () => {
     </div>
   );
 };
-
+export { ProjectsPage };
 export default ProjectsPage;
