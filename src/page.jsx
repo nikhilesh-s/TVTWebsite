@@ -27,110 +27,122 @@ const TypeWriter = ({ text, delay = 40 }) => {
 };
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        setIsScrolled(window.scrollY > 10);
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-  
-    
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    const navItems = [
-        { name: 'About', icon: <Info size={24} />, href: '/#about' },
-        /*{ name: 'Video', icon: <Video size={24} />, href: '/#video' },*/
-        { name: 'Why Tri-Valley Tech', icon: <Star size={24} />, href: '/#why' },
-        { name: 'Progress', icon: <Info size={24} />, href: '/progress' },
-        { name: 'articles', icon: <Info size={24} />, href: '/articles' },
-        /*{ name: 'Contributers', icon: <Info size={24} />, href: '/#about' },*/
-        /*{ name: 'Team', icon: <Users size={24} />, href: '/#team' },
-        { name: 'Projects', icon: <Rocket size={24} />, href: '/#projects' },*/
-        { name: 'Join Us', icon: <UserPlus size={24} />, href: '/#join' },
-        { name: 'Contact', icon: <MessageCircle size={24} />, href: '/#contact' },
-    ];
-    
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+      { name: 'About', icon: <Info size={24} />, to: '/#about' },
+      { name: 'Why Tri-Valley Tech', icon: <Star size={24} />, to: '/#why' },
+      { name: 'Progress', icon: <Info size={24} />, to: '/progress' },
+      { name: 'Articles', icon: <Info size={24} />, to: '/articles' },
+      { name: 'Join Us', icon: <UserPlus size={24} />, to: '/#join' },
+      { name: 'Contact', icon: <MessageCircle size={24} />, to: '/#contact' },
+  ];
+  
+  const NavLink = ({ item, onClick }) => {
+    if (item.to.startsWith('/#')) {
+      return (
+        <a 
+          href={item.to} 
+          className="text-purple-300 hover:text-purple-100 flex items-center"
+          onClick={onClick}
+        >
+          {React.cloneElement(item.icon, { size: 18, className: "mr-2" })}
+          {item.name}
+        </a>
+      );
+    }
     return (
-      <motion.header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-gray-900/80 backdrop-blur-md' : 'bg-gray-900'
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+      <Link 
+        to={item.to} 
+        className="text-purple-300 hover:text-purple-100 flex items-center"
+        onClick={onClick}
       >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
+        {React.cloneElement(item.icon, { size: 18, className: "mr-2" })}
+        {item.name}
+      </Link>
+    );
+  };
+
+  return (
+    <motion.header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-gray-900/80 backdrop-blur-md' : 'bg-gray-900'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+    >
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
           <motion.a
             className="text-2xl font-bold text-purple-400"
             href="/"
             whileHover={{ scale: 1.05 }}
-            >
+          >
             <img src={logo} alt="Tri-Valley Tech Logo" style={{ height: '4rem', width: 'auto' }} />
-        </motion.a>
+          </motion.a>
 
-            <nav className="hidden md:block">
-              <ul className="flex space-x-6">
-                {navItems.map((item) => (
-                  <motion.li key={item.name} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                    <a href={item.href} className="text-purple-300 hover:text-purple-100 flex items-center">
-                      {React.cloneElement(item.icon, { size: 18, className: "mr-2" })}
-                      {item.name}
-                    </a>
+          <nav className="hidden md:block">
+            <ul className="flex space-x-6">
+              {navItems.map((item) => (
+                <motion.li key={item.name} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <NavLink item={item} />
+                </motion.li>
+              ))}
+            </ul>
+          </nav>
+          <motion.button 
+            className="md:hidden text-purple-300"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </motion.button>
+        </div>
+      </div>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="md:hidden bg-gray-800 py-4"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <nav>
+              <ul className="flex flex-col items-start space-y-4 px-4">
+                {navItems.map((item, index) => (
+                  <motion.li 
+                    key={item.name} 
+                    className="w-full"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <NavLink 
+                      item={item}
+                      onClick={() => setIsMenuOpen(false)}
+                    />
                   </motion.li>
                 ))}
               </ul>
             </nav>
-            <motion.button 
-              className="md:hidden text-purple-300"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
-          </div>
-        </div>
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              className="md:hidden bg-gray-800 py-4"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <nav>
-                <ul className="flex flex-col items-start space-y-4 px-4">
-                  {navItems.map((item, index) => (
-                    <motion.li 
-                      key={item.name} 
-                      className="w-full"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <a 
-                        href={item.href} 
-                        className="text-purple-300 hover:text-purple-100 flex items-center text-lg py-2 border-b border-gray-700 w-full"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {React.cloneElement(item.icon, { size: 24, className: "mr-3" })}
-                        {item.name}
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
-    );
-  };
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  );
+};
   
 const RotatingCube = () => (
     <div className="scene">
@@ -671,7 +683,7 @@ const ContactForm = () => {
     );
   };
 
-const Footer = () => (
+  const Footer = () => (
     <footer className="bg-gray-900 text-gray-400 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -682,14 +694,14 @@ const Footer = () => (
           <div>
             <h4 className="text-lg font-semibold text-purple-400 mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><a href="#about" className="hover:text-purple-300 transition duration-300">About Us</a></li>
-              <li><a href="#projects" className="hover:text-purple-300 transition duration-300">Projects</a></li>
-              <li><a href="#join-us" className="hover:text-purple-300 transition duration-300">Join Us</a></li>
+              <li><a href="/#about" className="hover:text-purple-300 transition duration-300">About Us</a></li>
+              <li><Link to="/articles" className="hover:text-purple-300 transition duration-300">Articles</Link></li>
+              <li><Link to="/progress" className="hover:text-purple-300 transition duration-300">Progress</Link></li>
+              <li><a href="/#join" className="hover:text-purple-300 transition duration-300">Join Us</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-lg font-semibold text-purple-400 mb-4">Contact Us</h4>
-            
             <p className="text-sm">Email: trivalleytechnology@gmail.com</p>
             <p className="text-sm">Phone: (470) 609-2206</p>
           </div>
@@ -697,15 +709,16 @@ const Footer = () => (
             <h4 className="text-lg font-semibold text-purple-400 mb-4">Follow Us</h4>
             <div className="flex space-x-4">
               {[
-                { icon: <Facebook size={20} />, href: "#" },
-                { icon: <Twitter size={20} />, href: "#" },
-                { icon: <Instagram size={20} />, href: "#" },
-                { icon: <Linkedin size={20} />, href: "#" },
-                
+                { icon: <Facebook size={20} />, href: "https://facebook.com" },
+                { icon: <Twitter size={20} />, href: "https://twitter.com" },
+                { icon: <Instagram size={20} />, href: "https://instagram.com" },
+                { icon: <Linkedin size={20} />, href: "https://linkedin.com" },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-400 hover:text-purple-400 transition duration-300"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -722,7 +735,6 @@ const Footer = () => (
       </div>
     </footer>
   );
-  
  const Web = () => (
     <div className="font-sans bg-gray-900">
     <ScrollFadeIn delay={0.2}>
