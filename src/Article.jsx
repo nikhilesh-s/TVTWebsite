@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaNewspaper, FaCode, FaPalette, FaRocket, FaServer, FaBox, FaArrowLeft } from 'react-icons/fa';
+import { FaNewspaper, FaCode, FaPalette, FaRocket, FaServer, FaBox, FaArrowLeft, FaUsers } from 'react-icons/fa';
 import { Header, Footer } from './page.jsx';
 
 const articleData = [
@@ -9,6 +9,7 @@ const articleData = [
     title: "Creating our website",
     excerpt: "Explore the diverse range of technologies, libraries, and tools that have come together to create our dynamic website, providing a seamless and engaging experience for our visitors.",
     icon: <FaCode className="text-purple-500 text-4xl mb-4" />,
+    contributors: ["Amir Eftekhar"],
     content: `Creating our website 
 
 Creating a compelling and user-friendly website is a blend of art and technology. At Tri-Valley Tech, our mission to empower young innovators is reflected not only in our initiatives but also in the digital platform we’ve built to support them. This article explores the diverse range of technologies, libraries, and tools that have come together to create our dynamic website, providing a seamless and engaging experience for our visitors.
@@ -73,93 +74,131 @@ Deploying our website involves strategic considerations to ensure reliability an
 Moreover, by leveraging GitHub’s version control capabilities, we maintain a clear and organized development history, making it easier to track changes, revert to previous versions if necessary, and collaborate effectively as a team. This streamlined deployment process not only enhances our productivity but also ensures that our website remains reliable and performant as it grows and evolves.
 
 `
+,  contributers: ["Amir Eftekhar"]
   },
-  // Add more articles here
+
+
+  {
+    id: 2,
+    title: "Why Join Tri-Valley Tech",
+    excerpt: "Discover the compelling reasons to become part of Tri-Valley Tech, from hands-on experience and collaborative projects to mentorship and portfolio building opportunities.",
+    contributors: ["Nikhilesh Suravarjjala"],
+    icon: <FaUsers className="text-purple-500 text-4xl mb-4" />,
+    content: `
+At Tri-Valley Tech (TVT), we believe that high school students are capable of creating real-world change through innovation and collaboration. Our nonprofit organization offers students a unique platform to take their skills to the next level while making a positive impact in their communities.
+Here’s why joining TVT is a great opportunity:
+Hands-on Experience in Technology and Engineering: 
+TVT provides members with the chance to dive deep into fields like computer science, web development, and engineering. You'll get the opportunity to work on cutting-edge projects, learning practical skills that go beyond the classroom.
+
+
+Collaborative Real-World Projects: 
+As part of our team, you won’t just work on hypothetical problems—you’ll contribute to real-time engineering projects with clear goals and measurable outcomes. This experience is invaluable for students interested in pursuing careers in STEM, as it provides a true taste of what it's like to work on a project from start to finish.
+
+Mentorship and Skill Development: 
+TVT connects you with experienced mentors who can help guide you through your projects and personal growth. Whether you’re a tech enthusiast, a budding entrepreneur, or an environmental activist, you'll gain skills that will help you in your future career, from project management to technical problem-solving.
+
+A Strong Portfolio for College Applications: Colleges and employers are always looking for students who demonstrate initiative, teamwork, and problem-solving abilities. By working on impactful projects at TVT, you’ll build a portfolio that showcases your skills and your dedication to using technology for good.
+Volunteer Hours for Productivity: One of the most unique benefits of TVT is the ability to earn volunteer hours, not only for your direct contributions but also for productive discussions and collaboration on platforms like Discord. It’s a great way to maximize your involvement while earning hours that make a difference for your community and college applications.
+
+By joining TVT, you're not just gaining technical experience; you're becoming part of a community that shares your passion for creating change. Whether you’re interested in technology, environmental causes, or another field, there’s a place for you at TVT.
+Ready to turn your ideas into reality? Join us today and start making an impact! 
+`
+, contributers: ["Niklesh"]
+  
+  }
+
 ];
-
 const ArticleWidget = ({ article, onClick }) => {
-  const previewLength = 300; // Adjust this value to change the preview length
-  const preview = article.content.slice(0, previewLength) + (article.content.length > previewLength ? '...' : '');
-
-  return (
+    const previewLength = 300;
+    const preview = article.excerpt.slice(0, previewLength) + (article.excerpt.length > previewLength ? '...' : '');
+  
+    return (
+      <motion.div
+        className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-lg shadow-lg cursor-pointer mb-8"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => onClick(article)}
+      >
+        <div className="flex items-center mb-4">
+          {article.icon}
+          <div className="ml-4">
+            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{article.title}</h3>
+            <p className="text-sm text-gray-400 italic mt-1">
+              Key contributors: {article.contributors.join(", ")}
+            </p>
+          </div>
+        </div>
+        <p className="text-gray-300 text-lg">{preview}</p>
+        <div className="mt-4 flex justify-end">
+          <span className="text-purple-400 hover:text-purple-300 transition duration-300">Read more →</span>
+        </div>
+      </motion.div>
+    );
+  };
+  
+  const FullArticle = ({ article, onClose }) => (
     <motion.div
-      className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-lg shadow-lg cursor-pointer mb-8"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={() => onClick(article)}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-gray-900 overflow-y-auto z-50 p-4 md:p-8"
     >
-      <div className="flex items-center mb-4">
-        {article.icon}
-        <h3 className="text-2xl font-bold ml-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{article.title}</h3>
-      </div>
-      <p className="text-gray-300 text-lg">{preview}</p>
-      <div className="mt-4 flex justify-end">
-        <span className="text-purple-400 hover:text-purple-300 transition duration-300">Read more →</span>
+      <div className="max-w-3xl mx-auto bg-gray-800 rounded-lg shadow-xl p-6 md:p-8">
+        <button
+          onClick={onClose}
+          className="mb-4 text-purple-400 hover:text-purple-300 transition duration-300 flex items-center"
+        >
+          <FaArrowLeft className="mr-2" /> Back to Articles
+        </button>
+        <h2 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{article.title}</h2>
+        <p className="text-sm text-gray-400 italic mb-6">
+          By {article.contributors.join(", ")}
+        </p>
+        <div className="text-gray-300 text-lg leading-relaxed whitespace-pre-wrap">{article.content}</div>
       </div>
     </motion.div>
   );
-};
-
-const FullArticle = ({ article, onClose }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className="fixed inset-0 bg-gray-900 overflow-y-auto z-50 p-4 md:p-8"
-  >
-    <div className="max-w-3xl mx-auto bg-gray-800 rounded-lg shadow-xl p-6 md:p-8">
-      <button
-        onClick={onClose}
-        className="mb-4 text-purple-400 hover:text-purple-300 transition duration-300 flex items-center"
-      >
-        <FaArrowLeft className="mr-2" /> Back to Articles
-      </button>
-      <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{article.title}</h2>
-      <div className="text-gray-300 text-lg leading-relaxed whitespace-pre-wrap">{article.content}</div>
-    </div>
-  </motion.div>
-);
-
-const ArticlesPage = () => {
-  const [selectedArticle, setSelectedArticle] = useState(null);
-
-  return (
-    <div className="min-h-screen bg-gray-900">
-      <Header />
-      <AnimatePresence>
-        {selectedArticle ? (
-          <FullArticle
-            article={selectedArticle}
-            onClose={() => setSelectedArticle(null)}
-          />
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="container mx-auto px-4 py-20 mt-20"
-          >
-            <motion.h1
-              className="text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+  
+  const ArticlesPage = () => {
+    const [selectedArticle, setSelectedArticle] = useState(null);
+  
+    return (
+      <div className="min-h-screen bg-gray-900">
+        <Header />
+        <AnimatePresence>
+          {selectedArticle ? (
+            <FullArticle
+              article={selectedArticle}
+              onClose={() => setSelectedArticle(null)}
+            />
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="container mx-auto px-4 py-20 mt-20"
             >
-              Tri-Valley Tech Articles
-            </motion.h1>
-            {articleData.map((article) => (
-              <ArticleWidget
-                key={article.id}
-                article={article}
-                onClick={setSelectedArticle}
-              />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <Footer />
-    </div>
-  );
-};
-
-export default ArticlesPage;
+              <motion.h1
+                className="text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Tri-Valley Tech Articles
+              </motion.h1>
+              {articleData.map((article) => (
+                <ArticleWidget
+                  key={article.id}
+                  article={article}
+                  onClick={setSelectedArticle}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <Footer />
+      </div>
+    );
+  };
+  
+  export default ArticlesPage;
