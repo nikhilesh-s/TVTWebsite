@@ -55,7 +55,7 @@ const OfficerCard = ({ officer, index }) => {
         <img 
           src={officer.image} 
           alt={officer.name} 
-          className="w-full h-96 md:h-[28rem] lg:h-[450px] object-cover transition duration-300 transform hover:scale-110" 
+          className="w-full h-[32rem] md:h-[36rem] lg:h-[40rem] object-cover transition duration-300 transform hover:scale-110" 
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <p className="text-white text-lg font-semibold px-4 text-center">{officer.role}</p>

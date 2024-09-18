@@ -201,7 +201,7 @@ const Hero = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Turn your ideas into real-world impact with Tri-Valley Tech
+         Bring your ideas to life with Tri-Valley Tech
         </motion.p>
         <motion.button
       className="bg-purple-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-purple-700 transition duration-300 shadow-neon"
