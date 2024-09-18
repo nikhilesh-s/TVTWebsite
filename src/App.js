@@ -4,6 +4,7 @@ import ProjectsPage from './projects.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProgressPage from './progress.jsx';
 import ArticlesPage from './Article.jsx';
+import OfficersPage from './officers.jsx';
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         {/*<Route path="/projects" element={<ProjectsPage />} />*/}
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/articles" element={<ArticlesPage />} />
+        <Route path="/officers" element={<OfficersPage />} />
       </Routes>
     </Router>
   );

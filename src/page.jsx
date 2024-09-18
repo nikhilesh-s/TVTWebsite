@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Rocket, UserPlus, Menu, X, ChevronRight, Lightbulb, Send, Globe, Code, Palette, ArrowRight, Info, Video, MessageCircle, Star } from 'lucide-react';
-import { Facebook, Twitter, Instagram, Linkedin, Book, Clock, PenTool, CheckCircle, Target, FileText,} from 'lucide-react';
+import { Users, Rocket, UserPlus, Menu, X, ChevronRight, Lightbulb, Send, Globe, Code, Palette, ArrowRight, Info, Video, MessageCircle, Star, Award } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Book, Clock, PenTool, CheckCircle, Target, FileText, BarChart, Briefcase} from 'lucide-react';
 import { FaChevronDown, FaChevronUp,  FaBook, FaChartLine, FaArrowRight } from 'react-icons/fa';
 import ScrollFadeIn from './Fade.jsx';
 import Meet from './meet.jsx'
@@ -39,12 +39,13 @@ const Header = () => {
   }, []);
 
   const navItems = [
-      { name: 'About', icon: <Info size={24} />, to: '/#about' },
-      { name: 'Why Tri-Valley Tech', icon: <Star size={24} />, to: '/#why' },
-      { name: 'Progress', icon: <Info size={24} />, to: '/progress' },
-      { name: 'Articles', icon: <Info size={24} />, to: '/articles' },
-      { name: 'Join Us', icon: <UserPlus size={24} />, to: '/#join' },
-      { name: 'Contact', icon: <MessageCircle size={24} />, to: '/#contact' },
+    { name: 'About', icon: <Info size={24} />, to: '/#about' },
+    { name: 'Why Tri-Valley Tech', icon: <Star size={24} />, to: '/#why' },
+    { name: 'Progress', icon: <BarChart size={24} />, to: '/progress' },
+    { name: 'Articles', icon: <FileText size={24} />, to: '/articles' },
+    { name: 'Officers', icon: <Briefcase size={24} />, to: '/officers' },
+    { name: 'Join Us', icon: <UserPlus size={24} />, to: '/#join' },
+    { name: 'Contact', icon: <MessageCircle size={24} />, to: '/#contact' },
   ];
   
   const NavLink = ({ item, onClick }) => {
@@ -90,7 +91,6 @@ const Header = () => {
           >
             <img src={logo} alt="Tri-Valley Tech Logo" style={{ height: '4rem', width: 'auto' }} />
           </motion.a>
-
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
               {navItems.map((item) => (
@@ -119,20 +119,22 @@ const Header = () => {
             transition={{ duration: 0.3 }}
           >
             <nav>
-              <ul className="flex flex-col items-start space-y-4 px-4">
+              <ul className="flex flex-col items-start space-y-0 px-4">
                 {navItems.map((item, index) => (
                   <motion.li 
                     key={item.name} 
-                    className="w-full"
+                    className="w-full border-b border-gray-700 last:border-b-0"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <NavLink 
-                      item={item}
-                      onClick={() => setIsMenuOpen(false)}
-                    />
+                    <div className="py-4">
+                      <NavLink 
+                        item={item}
+                        onClick={() => setIsMenuOpen(false)}
+                      />
+                    </div>
                   </motion.li>
                 ))}
               </ul>
@@ -143,7 +145,6 @@ const Header = () => {
     </motion.header>
   );
 };
-  
 const RotatingCube = () => (
     <div className="scene">
       <div className="cube">
@@ -187,7 +188,7 @@ const Hero = () => (
     <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
       <div className="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
         <motion.h1
-          className="text-3xl md:text-5xl lg:text-6xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
+          className="text-5xl md:text-5xl lg:text-6xl font-bold mb-1 pb-5 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -378,15 +379,19 @@ const VideoSection = () => (
           <p className="text-lg text-gray-300 mb-8">
             Whether you're a tech enthusiast, a budding entrepreneur, or an environmental activist, TVT provides a platform for you to grow, learn, and make a real impact. Our unique blend of hands-on experience, mentorship, and collaborative projects sets you up for success in whatever path you choose to pursue.
           </p>
-          <a href="https://discord.gg/PzFEsjvQFB" target="_blank" rel="noopener noreferrer"></a>
-          <motion.button 
-            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg"
-            whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(236, 72, 153, 0.7)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Join Us Today and Start Making an Impact!
-          </motion.button>
-          <a/>
+          <a 
+  href="https://discord.gg/PzFEsjvQFB" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <motion.button 
+    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg"
+    whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(236, 72, 153, 0.7)" }}
+    whileTap={{ scale: 0.95 }}
+  >
+    Join Us Today and Start Making an Impact!
+  </motion.button>
+</a>
         </motion.div>
         
       </div>
@@ -697,6 +702,7 @@ const ContactForm = () => {
               <li><a href="/#about" className="hover:text-purple-300 transition duration-300">About Us</a></li>
               <li><Link to="/articles" className="hover:text-purple-300 transition duration-300">Articles</Link></li>
               <li><Link to="/progress" className="hover:text-purple-300 transition duration-300">Progress</Link></li>
+              <li><Link to="/officers" className="hover:text-purple-300 transition duration-300">Officers</Link></li>
               <li><a href="/#join" className="hover:text-purple-300 transition duration-300">Join Us</a></li>
             </ul>
           </div>
