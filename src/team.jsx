@@ -14,7 +14,8 @@ const officerData = [
     name: "Amir Eftekhar",
     role: "CEO",
     image: officer1Image,
-    description: "As the CEO of Tri-Valley Tech, I lead the charge in turning visionary ideas into impactful real-world projects. With extensive experience in web app development, curriculum design, and teaching coding classes, I bring a unique blend of technical expertise and leadership to our organization. I manage and oversee all of our projects, ensuring that every team member has a clear role and contributes to our mission. My hands-on approach not only drives the success of the organization but also inspires our members to push boundaries, develop new skills, and become the next generation of tech innovators.At Tri-Valley Tech, I make it my priority to create a welcoming collaborative environment where learning meets innovation. Through mentoring, technical guidance, and strategic planning, I ensure that we consistently deliver reconstitutive educational experiences. From organizing cross-functional teams to delivering cutting-edge projects, my focus remains on fostering talent and maximizing every student's potential in the world of engineering and technology."
+    description: "As the CEO of Tri-Valley Tech, I lead the charge in turning visionary ideas into impactful real-world projects. With extensive experience in web app development, curriculum design, and teaching coding classes, I bring a unique blend of technical expertise and leadership to our organization. I manage and oversee all of our projects, ensuring that every team member has a clear role and contributes to our mission. My hands-on approach not only drives the success of the organization but also inspires our members to push boundaries, develop new skills, and become the next generation of tech innovators.At Tri-Valley Tech, I make it my priority to create a welcoming collaborative environment where learning meets innovation. Through mentoring, technical guidance, and strategic planning, I ensure that we consistently deliver reconstitutive educational experiences. From organizing cross-functional teams to delivering cutting-edge projects, my focus remains on fostering talent and maximizing every student's potential in the world of engineering and technology.",
+    tags: ["Chief Suite", "App Development", "Management", "Mentorship"]
   },
   {
     id: 2,
@@ -22,15 +23,27 @@ const officerData = [
     role: "CEO",
     image: officer3Image,
     description: `As CEO at Tri-Valley Tech, I'm deeply involved in every aspect of our projects, from planning to execution. My role requires me to manage logistics across all initiatives, ensuring that timelines, resources, and quality standards are met consistently. I collaborate closely with teams on each project, not only coordinating their efforts but also actively contributing my expertise in coding, web development, and strategic planning. This hands-on approach allows me to support our members in overcoming technical challenges while keeping everything running smoothly behind the scenes.One of my key responsibilities is mentoring other members to improve their productivity and technical skills. I work closely with team members, guiding them in refining their coding practices, enhancing web development projects, and optimizing workflows. I believe that productivity isn't just about working faster—it's about working smarter, and I take pride in fostering an environment where everyone can grow and contribute meaningfully.My background in leadership, event management, and problem-solving helps me stay organized under pressure, ensuring that all of our projects meet deadlines without sacrificing quality. At Tri-Valley Tech, I'm committed to helping my fellow students achieve real-world impact through innovative projects. By working on every project and mentoring others along the way, I aim to lead by example, empowering our team to not only develop their technical skills but also take ownership of their work and drive meaningful results.`,
+    tags: ["Chief Suite", "App Development", "Management", "Design"]
   },
   {
     id: 3,
     name: "Siddharth Alluri",
     role: "CFO",
     image: officer2Image,
-    description: "As the CFO at Tri-Valley Tech, I manage our finances to make sure our innovative projects are well-funded. My job is to ensure that our financial decisions support our mission of giving students practical, real-world experience.I handle budgeting and resource allocation, working closely with our executive team to make sure we use our funds wisely. This ensures students have the tools and resources they need to engage in their engineering projects that help them learn and grow.At Tri-Valley Tech, we aim to create an environment where students gain the technical skills needed to succeed in the tech industry, while ensuring our resources are effectively managed to support their learning."
+    description: "As the CFO at Tri-Valley Tech, I manage our finances to make sure our innovative projects are well-funded. My job is to ensure that our financial decisions support our mission of giving students practical, real-world experience.I handle budgeting and resource allocation, working closely with our executive team to make sure we use our funds wisely. This ensures students have the tools and resources they need to engage in their engineering projects that help them learn and grow.At Tri-Valley Tech, we aim to create an environment where students gain the technical skills needed to succeed in the tech industry, while ensuring our resources are effectively managed to support their learning.",
+    tags: ["Chief Suite", "Management", "Financials", "Marketing"]
   }
 ];
+
+const tagColors = {
+  "Chief Suite": "bg-red-500",
+  "App Development": "bg-blue-500",
+  "Management": "bg-green-500",
+  "Marketing": "bg-yellow-500",
+  "Design": "bg-purple-500",
+  "Financials": "bg-pink-500",
+  "Mentorship": "bg-indigo-500"
+};
 
 const OfficerCard = ({ officer, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -80,6 +93,16 @@ const OfficerCard = ({ officer, index }) => {
             </motion.div>
           )}
         </AnimatePresence>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {officer.tags.map((tag, index) => (
+            <span
+              key={index}
+              className={`px-3 py-1 rounded-full text-white text-sm ${tagColors[tag]} opacity-90`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="mt-4 text-purple-400 hover:text-purple-300 transition-colors duration-300 self-start"
