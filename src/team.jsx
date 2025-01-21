@@ -7,7 +7,6 @@ import { useState } from 'react';
 import officer1Image from './images/amir.png';
 import officer2Image from './images/sida.webp';
 import officer3Image from './images/nik.webp';
-import officer4Image from './images/Arjun.png';
 
 const officerData = [
   {
@@ -20,9 +19,9 @@ const officerData = [
   {
     id: 2,
     name: "Nikhilesh Suravarjjala",
-    role: "COO",
+    role: "CEO",
     image: officer3Image,
-    description: "As the Chief Operating Officer at Tri-Valley Tech, I’m deeply involved in every aspect of our projects, from planning to execution. My role requires me to manage logistics across all initiatives, ensuring that timelines, resources, and quality standards are met consistently. I collaborate closely with teams on each project, not only coordinating their efforts but also actively contributing my expertise in coding, web development, and strategic planning. This hands-on approach allows me to support our members in overcoming technical challenges while keeping everything running smoothly behind the scenes.One of my key responsibilities is mentoring other members to improve their productivity and technical skills. I work closely with team members, guiding them in refining their coding practices, enhancing web development projects, and optimizing workflows. I believe that productivity isn’t just about working faster—it’s about working smarter, and I take pride in fostering an environment where everyone can grow and contribute meaningfully.My background in leadership, event management, and problem-solving helps me stay organized under pressure, ensuring that all of our projects meet deadlines without sacrificing quality. At Tri-Valley Tech, I’m committed to helping my fellow students achieve real-world impact through innovative projects. By working on every project and mentoring others along the way, I aim to lead by example, empowering our team to not only develop their technical skills but also take ownership of their work and drive meaningful results. "
+    description: `As CEO at Tri-Valley Tech, I'm deeply involved in every aspect of our projects, from planning to execution. My role requires me to manage logistics across all initiatives, ensuring that timelines, resources, and quality standards are met consistently. I collaborate closely with teams on each project, not only coordinating their efforts but also actively contributing my expertise in coding, web development, and strategic planning. This hands-on approach allows me to support our members in overcoming technical challenges while keeping everything running smoothly behind the scenes.One of my key responsibilities is mentoring other members to improve their productivity and technical skills. I work closely with team members, guiding them in refining their coding practices, enhancing web development projects, and optimizing workflows. I believe that productivity isn't just about working faster—it's about working smarter, and I take pride in fostering an environment where everyone can grow and contribute meaningfully.My background in leadership, event management, and problem-solving helps me stay organized under pressure, ensuring that all of our projects meet deadlines without sacrificing quality. At Tri-Valley Tech, I'm committed to helping my fellow students achieve real-world impact through innovative projects. By working on every project and mentoring others along the way, I aim to lead by example, empowering our team to not only develop their technical skills but also take ownership of their work and drive meaningful results.`,
   },
   {
     id: 3,
@@ -30,13 +29,6 @@ const officerData = [
     role: "CFO",
     image: officer2Image,
     description: "As the CFO at Tri-Valley Tech, I manage our finances to make sure our innovative projects are well-funded. My job is to ensure that our financial decisions support our mission of giving students practical, real-world experience.I handle budgeting and resource allocation, working closely with our executive team to make sure we use our funds wisely. This ensures students have the tools and resources they need to engage in their engineering projects that help them learn and grow.At Tri-Valley Tech, we aim to create an environment where students gain the technical skills needed to succeed in the tech industry, while ensuring our resources are effectively managed to support their learning."
-  },
-  {
-    id: 4,
-    name: "Arjun Chakraborty",
-    role: "CLO",
-    image: officer4Image,
-    description: "As the Chief Logistics Officer at Tri-Valley Tech, I oversee the logistical framework that ensures the execution of our projects. My role demands a balance of strategic planning and logistical oversight, managing the company's daily functions while driving long-term growth. I collaborate across departments, aligning team efforts with our broader goals, and ensuring that we consistently meet quality standards.A significant part of my responsibility is streamlining processes and improving efficiency across projects. My focus is on fostering a culture of logistical excellence, where innovation and efficiency go hand in hand. By ensuring that our logistics are well-coordinated, I make sure our output is maximized and leverage that for better opportunities.My approach is grounded in the belief that logistical success depends on a well-supported team. By cultivating a collaborative environment and leading by example, I help our team stay organized, innovative, and motivated to achieve real-world impact."
   }
 ];
 
@@ -105,17 +97,17 @@ const OfficersPage = () => {
       <Header />
       <div className="container mx-auto px-4 py-20 mt-20">
         <motion.h1
-          className="text-5xl font-bold text-center mb-12 text-transparent pb-13 bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500"
-          initial={{ opacity: 0, y: -50 }}
+          className="text-4xl font-bold text-center mb-12 text-purple-400"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Meet Our Officers
+          Officers
         </motion.h1>
         {/* Added 'items-start' to prevent grid items from stretching to the same height */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {officerData.map((officer) => (
-            <OfficerCard key={officer.id} officer={officer} />
+          {officerData.map((officer, index) => (
+            <OfficerCard key={officer.id} officer={officer} index={index} />
           ))}
         </div>
       </div>

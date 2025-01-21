@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Rocket, UserPlus, Menu, X, ChevronRight, Lightbulb, Send, Globe, Code, Palette, ArrowRight, Info, Video, MessageCircle, Star, Award } from 'lucide-react';
-import { Facebook, Twitter, Instagram, Linkedin, Book, Clock, PenTool, CheckCircle, Target, FileText, BarChart, Briefcase} from 'lucide-react';
+import { Users, Rocket, UserPlus, Menu, X, ChevronRight, Lightbulb, Send, Globe, Code, Palette, ArrowRight, Info, Video, MessageCircle, Star, Award, FolderOpen, FileText, BarChart } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Book, Clock, PenTool, CheckCircle, Target, Briefcase} from 'lucide-react';
 import { FaChevronDown, FaChevronUp,  FaBook, FaChartLine, FaArrowRight } from 'react-icons/fa';
 import ScrollFadeIn from './Fade.jsx';
 import Meet from './meet.jsx'
@@ -39,13 +39,11 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'About', icon: <Info size={24} />, to: '/#about' },
-    { name: 'Why Tri-Valley Tech', icon: <Star size={24} />, to: '/#why' },
-    { name: 'Progress', icon: <BarChart size={24} />, to: '/progress' },
+    { name: 'Why Join TVT?', icon: <Users size={24} />, to: '/#why-join' },
+    { name: 'Impact', icon: <BarChart size={24} />, to: '/#impact' },
     { name: 'Articles', icon: <FileText size={24} />, to: '/articles' },
-    { name: 'Officers', icon: <Briefcase size={24} />, to: '/officers' },
-    { name: 'Join Us', icon: <UserPlus size={24} />, to: '/#join' },
-    { name: 'Contact', icon: <MessageCircle size={24} />, to: '/#contact' },
+    { name: 'Team', icon: <Users size={24} />, to: '/team' },
+    { name: 'Projects', icon: <FolderOpen size={24} />, to: '/projects' },
   ];
   
   const NavLink = ({ item, onClick }) => {
@@ -145,6 +143,7 @@ const Header = () => {
     </motion.header>
   );
 };
+
 const RotatingCube = () => (
     <div className="scene">
       <div className="cube">
@@ -203,15 +202,17 @@ const Hero = () => (
         >
          Bring your ideas to life with Tri-Valley Tech
         </motion.p>
-        <motion.button
-      className="bg-purple-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-purple-700 transition duration-300 shadow-neon"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={scrollToJoinSection}
-    >
-      Get Started
-    </motion.button>
-
+        <div className="mt-8">
+          <a
+            href="https://discord.gg/n6TCxpCGqM"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition duration-300 inline-flex items-center"
+          >
+            Get Started
+            <ArrowRight className="ml-2" />
+          </a>
+        </div>
         
       </div>
       <div className="md:w-1/2 flex justify-center mt-8 md:mt-0">
@@ -227,7 +228,7 @@ const VideoSection = () => (
       <div className="container mx-auto px-4">
         <ScrollFadeIn>
           <div className="mt-12">
-            <h3 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+            <h3 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 to-red-500">
               Watch Our Introduction Video
             </h3>
             <div className="flex justify-center">
@@ -292,191 +293,127 @@ const VideoSection = () => (
     </motion.div>
   );
   
-  const Why = () => (
-    <section id="why" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
-      <div className="container mx-auto px-4">
-        <motion.h2 
-          className="text-4xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Why Join Tri-Valley Tech?
-        </motion.h2>
-        <motion.p 
-          className="text-lg text-gray-300 text-center mb-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          At Tri-Valley Tech (TVT), we believe that high school students are capable of creating real-world change through innovation and collaboration. Our nonprofit organization offers students a unique platform to take their skills to the next level while making a positive impact in their communities.
-        </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          <Feature 
-            icon={<Users />}
-            title="Collaborative Community"
-            description="Connect with like-minded peers who share your passion for making a difference. Join a community that fosters innovation and teamwork."
-            index={0}
-          />
-          <Feature 
-            icon={<Rocket />}
-            title="Real-World Projects"
-            description="Work on meaningful projects that have a tangible impact on your community. Contribute to real-time engineering projects with clear goals and measurable outcomes."
-            index={1}
-          />
-          <Feature 
-            icon={<Lightbulb />}
-            title="Skill Development"
-            description="Learn new skills and gain valuable experience for your future endeavors. Develop project management, technical problem-solving, and leadership skills."
-            index={2}
-          />
-          <Feature 
-            icon={<Code />}
-            title="Hands-on Tech Experience"
-            description="Dive deep into fields like computer science, web development, and engineering. Work on cutting-edge projects and learn practical skills that go beyond the classroom."
-            index={3}
-          />
-          <Feature 
-            icon={<Globe />}
-            title="Global Impact"
-            description="Make a difference not just locally, but potentially on a global scale. Your projects at TVT can address real-world challenges and create positive change."
-            index={4}
-          />
-          <Feature 
-            icon={<Users />}
-            title="Mentorship"
-            description="Connect with experienced mentors who guide you through projects and personal growth. Learn from industry professionals and gain insights into various STEM careers."
-            index={5}
-          />
-          <Feature 
-            icon={<Book />}
-            title="Strong Portfolio"
-            description="Build a portfolio that showcases your skills and dedication to using technology for good. Impress colleges and future employers with real-world project experience."
-            index={6}
-          />
-          <Feature 
-            icon={<Clock />}
-            title="Volunteer Hours"
-            description="Earn volunteer hours not just for direct contributions, but also for productive discussions and collaboration on platforms like Discord. Maximize your involvement while making a difference."
-            index={7}
-          />
-          <Feature 
-            icon={<PenTool />}
-            title="Diverse Opportunities"
-            description="Whether you're interested in technology, environmental causes, or another field, there's a place for you at TVT. Explore various aspects of innovation and find your passion."
-            index={8}
-          />
+  const Why = () => {
+    const features = [
+      {
+        title: "Real-World Projects",
+        description: "Take part in projects that address real community needs and provide tangible outcomes. From engineering solutions to technology-driven initiatives, TVT gives you the opportunity to make a difference while gaining hands-on experience.",
+        icon: <Rocket />
+      },
+      {
+        title: "Skill Development",
+        description: "Learn essential skills such as project management, technical problem-solving, and leadership. Whether you're exploring coding, design, or environmental innovation, you'll develop abilities that set you apart for future academic and career opportunities.",
+        icon: <Book />
+      },
+      {
+        title: "Volunteer Hours",
+        description: "Earn valuable volunteer hours for both your direct contributions and collaborative efforts. Engage in productive discussions and teamwork while building your resume and making a positive impact.",
+        icon: <Clock />
+      }
+    ];
+
+    return (
+      <section id="why-join" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-8 text-purple-400">Why Join Tri-Valley Tech?</h2>
+            <p className="text-lg mb-12 text-gray-300">
+              At Tri-Valley Tech (TVT), we empower high school students to create real-world change through meaningful projects, skill development, and community impact. By joining, you'll work on collaborative initiatives that solve real problems, gain practical experience, and contribute to something bigger than yourself.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-800 p-8 rounded-lg text-center relative overflow-hidden group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                  initial={false}
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                />
+                <div className="text-purple-400 mb-4">
+                  {React.cloneElement(feature.icon, { size: 48 })}
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-300">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-lg mb-6 text-gray-300">
+              At TVT, you'll join a community of like-minded peers, guided by experienced mentors, to turn your ideas into impactful realities. Whether you're coding an app, designing sustainable solutions, or working on your first engineering project, TVT equips you with the tools to succeed and the platform to showcase your talent.
+            </p>
+            <p className="text-lg text-gray-300">
+              Become part of a movement that bridges the gap between education, technology, and social impact. Join Tri-Valley Tech today to develop your skills, contribute to meaningful projects, and make a lasting difference in your community and beyond.
+            </p>
+          </div>
         </div>
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1 }}
-        >
-          <p className="text-lg text-gray-300 mb-8">
-            By joining TVT, you're not just gaining technical experience; you're becoming part of a community that shares your passion for creating change. You'll have the opportunity to work on projects that matter, develop skills that will serve you throughout your career, and make connections that could last a lifetime.
-          </p>
-          <p className="text-lg text-gray-300 mb-8">
-            Whether you're a tech enthusiast, a budding entrepreneur, or an environmental activist, TVT provides a platform for you to grow, learn, and make a real impact. Our unique blend of hands-on experience, mentorship, and collaborative projects sets you up for success in whatever path you choose to pursue.
-          </p>
-          <a 
-  href="https://discord.gg/PzFEsjvQFB" 
-  target="_blank" 
-  rel="noopener noreferrer"
->
-  <motion.button 
-    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg"
-    whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(236, 72, 153, 0.7)" }}
-    whileTap={{ scale: 0.95 }}
-  >
-    Join Us Today and Start Making an Impact!
-  </motion.button>
-</a>
-        </motion.div>
-        
-      </div>
-    </section>
-  );
+      </section>
+    );
+  };
   
 
 
   const AboutUs = () => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const mainContent = "Tri-Valley Tech is a nonprofit organization dedicated to empowering high school students through technology-driven initiatives. We provide hands-on opportunities to develop innovative solutions, collaborate on impactful projects, and lead community-focused events, bridging the gap between education, technology, and real-world needs.";
   
-    const expandedContent = `
-      Welcome to Tri-Valley Tech, a pioneering nonprofit organization dedicated to transforming the landscape of youth empowerment and innovation. Nestled in the heart of the Tri-Valley region, our organization serves as a beacon for high school students eager to harness their creativity and passion to address real-world challenges. At Tri-Valley Tech, we firmly believe that the young minds of today are the architects of a brighter, more sustainable future. To this end, we are committed to providing them with the tools, resources, and support necessary to turn visionary ideas into impactful realities.
-  
-      Our mission is to empower high school students by fostering an environment where creativity, collaboration, and critical thinking thrive. We aim to bridge the gap between academic learning and practical application, enabling students to engage in meaningful projects that enhance their personal and professional growth while contributing positively to their communities and beyond. By cultivating a generation of innovators, leaders, and change-makers, Tri-Valley Tech equips young individuals to tackle the complex challenges of the modern world with confidence and ingenuity.
-  
-      Tri-Valley Tech envisions a world where every high school student has the opportunity to explore their interests, develop their skills, and make a tangible difference through technology and innovation. We aspire to be a catalyst for social change, inspiring students to pursue their passions across various fields, including technology, environmental sustainability, the arts, and more. By nurturing a culture of inclusivity, curiosity, and resilience, we aim to create a ripple effect that extends from individual projects to global initiatives, fostering a community of proactive and engaged young leaders.
-  
-      At Tri-Valley Tech, we offer a comprehensive suite of programs and resources designed to support students at every stage of their innovation journey. Our innovative project incubation process provides a structured pathway for students to develop their ideas from inception to execution. This includes brainstorming sessions, feasibility assessments, and strategic planning to ensure each project is grounded in practicality and aligned with real-world needs.
-    `;
-  
+    const expandedContent = `Tri-Valley Tech serves as a hub for creativity and innovation, equipping students with resources, mentorship, and a collaborative platform to turn ideas into reality. Our mission is to inspire and empower the next generation of leaders by fostering an environment where critical thinking, collaboration, and real-world problem-solving thrive.
+
+Through a structured approach that includes project incubation, strategic planning, and hands-on experience, we enable students to create solutions that address community challenges and broader societal needs. Whether it's web development, app creation, or sustainability-focused projects, we aim to bridge the gap between academic learning and practical application.
+
+We envision a world where every student has the opportunity to explore their passions, gain valuable skills, and make a meaningful impact. By nurturing curiosity, resilience, and leadership, Tri-Valley Tech is building a community of innovators ready to tackle the challenges of today and shape a better tomorrow.`;
+
     return (
-      <section id="about" className="py-20 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
+      <section id="about" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">About Tri-Valley Tech</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-3xl font-bold mb-8 text-purple-400">About Us</h2>
+            <p className="text-lg mb-4 text-gray-300">{mainContent}</p>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-purple-400 hover:text-purple-300 transition-colors flex items-center mx-auto"
             >
-              <p className="text-lg mb-6 text-gray-300">
-                <TypeWriter text="Tri-Valley Tech is a nonprofit organization dedicated to empowering high school students to create real-world impact through innovative projects. We believe that today's students have the potential to solve many of the challenges we face in our communities and beyond." />
-              </p>
-              <p className="text-lg mb-6 text-gray-300">
-                Our mission is to provide resources, guidance, and a collaborative platform that helps students take their ideas from concept to reality. By joining Tri-Valley Tech, you become part of a community of passionate peers who share your drive to make a difference.
-              </p>
-              <p className="text-lg text-gray-300">
-                Whether you're interested in technology, environmental issues, art, or any other field, Tri-Valley Tech offers the opportunity to work on meaningful projects, learn new skills, and connect with mentors who can help shape your future.
-              </p>
-              <motion.button
-                className="mt-6 bg-purple-600 text-white px-4 py-2 rounded-full flex items-center justify-center hover:bg-purple-700 transition duration-300"
-                onClick={() => setIsExpanded(!isExpanded)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              {isExpanded ? 'Show Less' : 'Read More'}
+              <motion.span
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="ml-2"
               >
-                {isExpanded ? 'Read Less' : 'Read More'}
-                {isExpanded ? <FaChevronUp className="ml-2" /> : <FaChevronDown className="ml-2" />}
-              </motion.button>
-            </motion.div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: <Globe size={48} />, text: "High Impact" },
-                { icon: <Code size={48} />, text: "Tech Innovation" },
-                { icon: <Palette size={48} />, text: "Creative Solutions" },
-                { icon: <Users size={48} />, text: "Community Building" }
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="bg-gray-800 p-6 rounded-lg text-center shadow-neon"
-                  whileHover={{ scale: 1.05 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                <FaChevronDown />
+              </motion.span>
+            </button>
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 text-gray-300 whitespace-pre-line"
                 >
-                  <div className="text-purple-500">{item.icon}</div>
-                  <p className="font-semibold mt-2 text-purple-300">{item.text}</p>
+                  <p className="text-lg mb-4">{expandedContent}</p>
                 </motion.div>
-              ))}
-            </div>
-          </div>
-          
-          <AnimatePresence>
-            {isExpanded && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mt-8 text-gray-300"
-              >
-                <p className="text-lg mb-4">{expandedContent}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
     );
@@ -484,28 +421,35 @@ const VideoSection = () => (
   
   const ProjectCard = ({ title, description, tags }) => (
     <motion.div 
-      className="bg-gray-800 p-6 rounded-lg shadow-neon"
+      className="bg-gray-800 p-6 rounded-lg shadow-lg bg-gradient-to-br from-gray-800 to-gray-700 relative overflow-hidden group"
       whileHover={{ scale: 1.05 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h3 className="text-xl font-semibold mb-2 text-purple-400">{title}</h3>
-      <p className="mb-4 text-gray-300">{description}</p>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag, index) => (
-          <span key={index} className="bg-purple-900 text-purple-200 px-2 py-1 rounded text-sm">
-            {tag}
-          </span>
-        ))}
-      </div>
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+        initial={false}
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      />
+      <h3 className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+        {title}
+      </h3>
+      <p className="text-gray-300">{description}</p>
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-pink-500"
+        initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
+        transition={{ duration: 0.3 }}
+      />
     </motion.div>
   );
   
   const Projects = () => (
     <section id="projects" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">Featured Projects</h2>
+        <h2 className="text-3xl font-bold text-center text-purple-400">Featured Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <ProjectCard 
             title="Tutoring Application"
@@ -556,7 +500,7 @@ const VideoSection = () => (
   );
   
   const CTA = () => (
-    <section id="join-us" className="bg-gradient-to-br from-gray-900 to-gray-700 text-white py-20">
+    <section id="join" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
       <div className="container mx-auto text-center px-4">
         <motion.h2 
           className="text-3xl font-bold mb-4 text-purple-400"
@@ -589,26 +533,52 @@ const VideoSection = () => (
             icon={<FaBook className="ml-2" />}
             description="Explore our latest articles on technology, innovation, and student projects."
           />
-          
-          <CTAButton 
-            href="/progress"
-            text="See Our Progress"
-            icon={<FaChartLine className="ml-2" />}
-            description="Check out our journey and the milestones we've achieved so far."
-          />
         </div>
       </div>
     </section>
   );
 
+  const Impact = () => (
+    <section className="py-20 bg-gradient-to-br from-gray-900 to-purple-900 text-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-5xl font-bold text-center mb-20 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Our Impact</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            className="p-8 rounded-lg bg-gray-800 bg-opacity-50 backdrop-blur-lg border border-purple-500/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">5,000+</h3>
+            <p className="text-xl text-center text-gray-300">Students Mentored</p>
+          </motion.div>
 
+          <motion.div 
+            className="p-8 rounded-lg bg-gray-800 bg-opacity-50 backdrop-blur-lg border border-purple-500/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h3 className="text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">2,000+</h3>
+            <p className="text-xl text-center text-gray-300">Active Mentors</p>
+          </motion.div>
 
+          <motion.div 
+            className="p-8 rounded-lg bg-gray-800 bg-opacity-50 backdrop-blur-lg border border-purple-500/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h3 className="text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">10+</h3>
+            <p className="text-xl text-center text-gray-300">Countries Reached</p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 
-
-
-
-
-const ContactForm = () => {
+  const ContactForm = () => {
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -698,13 +668,13 @@ const ContactForm = () => {
           </div>
           <div>
             <h4 className="text-lg font-semibold text-purple-400 mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><a href="/#about" className="hover:text-purple-300 transition duration-300">About Us</a></li>
-              <li><Link to="/articles" className="hover:text-purple-300 transition duration-300">Articles</Link></li>
-              <li><Link to="/progress" className="hover:text-purple-300 transition duration-300">Progress</Link></li>
-              <li><Link to="/officers" className="hover:text-purple-300 transition duration-300">Officers</Link></li>
-              <li><a href="/#join" className="hover:text-purple-300 transition duration-300">Join Us</a></li>
-            </ul>
+            <div className="space-y-8">
+              <ul className="space-y-2">
+                <li><Link to="/articles" className="hover:text-purple-300 transition duration-300">Articles</Link></li>
+                <li><Link to="/team" className="hover:text-purple-300 transition duration-300">Team</Link></li>
+                <li><Link to="/projects" className="hover:text-purple-300 transition duration-300">Projects</Link></li>
+              </ul>
+            </div>
           </div>
           <div>
             <h4 className="text-lg font-semibold text-purple-400 mb-4">Contact Us</h4>
@@ -717,7 +687,7 @@ const ContactForm = () => {
               {[
                 { icon: <Facebook size={20} />, href: "https://facebook.com" },
                 { icon: <Twitter size={20} />, href: "https://twitter.com" },
-                { icon: <Instagram size={20} />, href: "https://instagram.com" },
+                { icon: <Instagram size={20} />, href: "https://www.instagram.com/trivalleytech/profilecard/?igsh=NTc4MTIwNjQ2YQ==" },
                 { icon: <Linkedin size={20} />, href: "https://linkedin.com" },
               ].map((social, index) => (
                 <motion.a
@@ -781,6 +751,11 @@ const ContactForm = () => {
         </section>
       </ScrollFadeIn>
       */}
+      <ScrollFadeIn>
+        <section id="impact">
+          <Impact />
+        </section>
+      </ScrollFadeIn>
       <ScrollFadeIn>
         <section id="join">
           <CTA />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion} from 'framer-motion';
+import { Header } from './page.jsx';
 
 const TypeWriter = ({ text, delay = 40 }) => {
   const [displayText, setDisplayText] = useState('');
@@ -87,16 +88,19 @@ const Meet = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-900 to-purple-900">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">Meet the Founders</h2>
-        <div className="flex flex-wrap justify-center gap-8">
-          {founders.map((founder, index) => (
-            <FounderCard key={index} {...founder} />
-          ))}
+    <div>
+      <Header />
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-purple-900">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-purple-400">Meet the Founders</h2>
+          <div className="flex flex-wrap justify-center gap-8">
+            {founders.map((founder, index) => (
+              <FounderCard key={index} {...founder} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
