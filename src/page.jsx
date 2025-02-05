@@ -706,7 +706,7 @@ We envision a world where every student has the opportunity to explore their pas
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p>&copy; 2024 Tri-Valley Tech. All rights reserved.</p>
+          <p>&copy; 2025 Tri-Valley Tech. All rights reserved.</p>
         </div>
       </div>
     </footer>
